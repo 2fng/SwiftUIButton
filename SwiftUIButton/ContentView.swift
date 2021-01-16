@@ -10,27 +10,23 @@ import SwiftUI
 struct ContentView: View {
     var body: some View {
         Button(action: {
-            print("Delete button was tapped!")
+            //tapped
         }) {
-            Label(
-                title: {
-                    Text("Delete")
-                        .font(.title)
-                        .fontWeight(.semibold)
-                },
-                icon: {
-                    Image(systemName: "trash")
-                        .font(.title)
-                }
-            )
-            .frame(minWidth: 0, maxWidth: .infinity)
-            .padding()
-            .background(LinearGradient(gradient: Gradient(colors: [Color("DarkGreen"), Color("LightGreen")]), startPoint: .leading, endPoint: .trailing))
-            .foregroundColor(.white)
-            .cornerRadius(40)
-            .shadow(color: .gray, radius: 10, x: 5, y: 5)
-            
+            Image(systemName: "plus")
         }
+        .buttonStyle(PlusButtonStyle())
+    }
+}
+
+struct PlusButtonStyle : ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .foregroundColor(.white)
+            .font(.system(size: 60))
+            .padding()
+            .background(Color.purple)
+            .clipShape(Circle())
+            .rotationEffect(configuration.isPressed ? .degrees(135) : .zero)
     }
 }
 
